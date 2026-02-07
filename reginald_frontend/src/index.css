@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    font-family: 'Outfit', Inter, system-ui, sans-serif;
+    user-select: none;
+    --bg-main: #ffffff;
+    --text-main: #0f172a;
+}
+
+.dark {
+    --bg-main: #020617;
+    /* Deep slate / blue-black */
+    --text-main: #f8fafc;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-main) !important;
+    color: var(--text-main);
+    @apply min-h-screen transition-colors duration-500 ease-in-out;
+}
+
+#app {
+    @apply min-h-screen flex flex-col bg-transparent;
+}
+
+/* Glassmorphism utility */
+.glass {
+    @apply bg-white/70 backdrop-blur-xl border border-slate-200/50 shadow-xl shadow-slate-200/40;
+}
+
+.dark .glass {
+    @apply bg-slate-900/60 border-slate-700/50 shadow-none;
+}
+
+/* Compact Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-slate-200 rounded-full hover:bg-slate-300 transition-colors;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    @apply bg-slate-800 hover:bg-slate-700;
+}
+
+@keyframes blob {
+    0% {
+        transform: scale(1);
+    }
+
+    33% {
+        transform: scale(1.1) translate(30px, -50px);
+    }
+
+    66% {
+        transform: scale(0.9) translate(-20px, 20px);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.animate-blob {
+    animation: blob 7s infinite alternate;
+}
+
+/* Transitions */
+.page-enter-active,
+.page-leave-active {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.page-enter-from {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.page-leave-to {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+/* Card Hover Effects */
+.card-hover {
+    @apply transition-all duration-300 hover:scale-[1.01] hover:shadow-2xl hover:shadow-primary-500/10;
+}
+
+/* Responsive Grid Adapters */
+.responsive-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6;
+}
+
+.compact-layout {
+    @apply max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8;
+}
+
+/* Sunken / Inset Neumorphism */
+.shadow-sunken {
+    box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.1),
+        inset -4px -4px 8px rgba(255, 255, 255, 0.5);
+}
+
+.dark .shadow-sunken {
+    box-shadow: inset 4px 4px 12px rgba(0, 0, 0, 0.6),
+        inset -2px -2px 8px rgba(255, 255, 255, 0.05);
+}
+
+/* Transparent text that inherits background color logic */
+.bg-clip-text-background {
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-color: currentColor;
+}
